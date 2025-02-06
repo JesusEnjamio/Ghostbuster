@@ -25,4 +25,10 @@ public class Fantasma {
     public String getNivelPeligro() { return nivelPeligro; }
     public String getHabilidad() { return habilidad; }
     public LocalDateTime getFechaCaptura() { return fechaCaptura; }
+
+   @Override
+    public String toString() {
+        return String.format("%-5d %-30s %-15s %-10s %s",
+                id, nombre, clase, nivelPeligro, fechaCaptura);
+    }
 }
