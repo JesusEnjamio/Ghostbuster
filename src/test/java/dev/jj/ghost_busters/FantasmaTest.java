@@ -39,4 +39,20 @@ public class FantasmaTest {
         assertThat(fantasma.getNivelPeligro(), equalTo(nivelPeligro));
         assertThat(fantasma.getHabilidad(), equalTo(habilidad));
     }
+    @Test
+    public void testToString() {
+        int id = 2;
+        String nombre = "frurulas";
+        String clase = "Clase II";
+        String nivelPeligro = "Alto";
+        String habilidad = "Poseer";
+
+        Fantasma fantasma = new Fantasma(id, nombre, clase, nivelPeligro, habilidad);
+        String resultado = fantasma.toString();
+
+        assertThat(resultado, containsString(Integer.toString(id)));
+        assertThat(resultado, containsString(nombre));
+        assertThat(resultado, containsString(clase));
+        assertThat(resultado, containsString(nivelPeligro));
+    }
 }
