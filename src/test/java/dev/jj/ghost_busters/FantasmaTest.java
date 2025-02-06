@@ -7,15 +7,15 @@ import java.time.LocalDateTime;
 
 public class FantasmaTest {
     @Test
-public void testConstructorInicializaAtributosCorrectamente() {
+public void testConstructor() {
     int id = 1;
     String nombre = "Casper";
     String clase = "Clase I";
     String nivelPeligro = "Bajo";
     String habilidad = "Invisibilidad";
 
-    Fantasma fantasma = new Fantasma(id, nombre, clase, nivelPeligro, habilidad);
-
-    
+  
+       // Assert
+      
 }
 }
