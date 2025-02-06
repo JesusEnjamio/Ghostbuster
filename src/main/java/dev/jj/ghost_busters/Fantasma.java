@@ -1,4 +1,5 @@
 package dev.jj.ghost_busters;
+
 import java.time.LocalDateTime;
 
 public class Fantasma {
@@ -17,5 +18,11 @@ public class Fantasma {
         this.habilidad = habilidad;
         this.fechaCaptura = LocalDateTime.now();
     }
-   
+
+    public int getId() { return id; }
+    public String getNombre() { return nombre; }
+    public String getClase() { return clase; }
+    public String getNivelPeligro() { return nivelPeligro; }
+    public String getHabilidad() { return habilidad; }
+    public LocalDateTime getFechaCaptura() { return fechaCaptura; }
 }
