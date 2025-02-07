@@ -2,15 +2,14 @@ package dev.jj.ghost_busters;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.*;
-
-import java.util.Scanner; 
-
-
+import java.util.List;
+import java.util.Scanner;
 
 public class CazadorTest {
     private Cazador cazador;
@@ -22,43 +21,55 @@ public class CazadorTest {
 
     @Test
     public void testCapturarFantasma() {
-        
+      
         String input = "Casper\n1\nBajo\nVolar\n";
         ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         System.setIn(inputStream);
 
         Scanner scanner = new Scanner(System.in);
         cazador.capturarFantasma(scanner);
-        
 
         
+        List<Fantasma> fantasmas = cazador.getFantasmas();
+        assertEquals(1, fantasmas.size());
+        assertEquals("Casper", fantasmas.get(0).getNombre());
+        scanner.close();
     }
+
     @Test
-public void testListarFantasmas() {
-    // Simular entrada del usuario para capturar un fantasma
-    String input = "Casper\n1\nBajo\nVolar\n"; // Nombre, Clase, Nivel de Peligro, Habilidad
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-    System.setIn(inputStream);
+    public void testListarFantasmas() {
+        Fantasma fantasma = new Fantasma(1, "Casper", "Clase I", "Bajo", "Volar");
+        cazador.getFantasmas().add(fantasma);
 
-    // Crear un Scanner con la entrada simulada
-    Scanner scanner = new Scanner(System.in);
-    cazador.capturarFantasma(scanner);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+      
+        cazador.listarFantasmas();
+        
+        String output = outputStream.toString();
+  
+        assertTrue(output.contains("Casper"));
+        assertTrue(output.contains("Clase I"));
+        assertTrue(output.contains("Bajo"));
+    }
 
-    // Redirigir la salida estándar a un ByteArrayOutputStream para capturarla
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(outputStream));
+    @Test
+    public void testLiberarFantasma() {
+        
+        Fantasma fantasma = new Fantasma(1, "Casper", "Clase I", "Bajo", "Volar");
+        cazador.getFantasmas().add(fantasma);
 
-    // Llamar al método listarFantasmas
-    cazador.listarFantasmas();
+        
+        String input = "1\n";
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
 
-    // Obtener la salida generada por el método
-    String output = outputStream.toString();
+        Scanner scanner = new Scanner(System.in);
+        cazador.liberarFantasma(scanner);
 
-    // Verificar que la salida contiene los valores esperados
-    assertTrue(output.contains("Casper"));
-    assertTrue(output.contains("Clase I"));
-    assertTrue(output.contains("Bajo"));
-
-    scanner.close();
-}
+       
+        List<Fantasma> fantasmas = cazador.getFantasmas();
+        assertEquals(0, fantasmas.size());
+        scanner.close();
+    }
 }

@@ -1,5 +1,6 @@
 package dev.jj.ghost_busters;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +14,12 @@ public class Cazador {
         contadorId = 1;
     }
 
-    // Capturar un nuevo fantasma
+    
+    public List<Fantasma> getFantasmas() {
+        return fantasmas;
+    }
+
+    
     public void capturarFantasma(Scanner scanner) {
         System.out.println("Ingresa el nombre del fantasma:");
         String nombre = scanner.nextLine();
@@ -40,6 +46,8 @@ public class Cazador {
         fantasmas.add(fantasma);
         System.out.println("Fantasma \"" + nombre + "\" capturado exitosamente.");
     }
+
+   
     public void listarFantasmas() {
         if (fantasmas.isEmpty()) {
             System.out.println("No hay fantasmas capturados.");
@@ -52,5 +60,4 @@ public class Cazador {
         }
         System.out.println("Total de fantasmas capturados: " + fantasmas.size());
     }
-
 }
