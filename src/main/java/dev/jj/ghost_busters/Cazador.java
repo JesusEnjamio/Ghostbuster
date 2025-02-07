@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Cazador {
-    private List<Fantasma> fantasmas; // Lista que almacena todos los fantasmas capturados
-    private int contadorId; // Contador para asignar IDs únicos a los fantasmas
+    private List<Fantasma> fantasmas; 
+    private int contadorId; 
 
     public Cazador() {
         fantasmas = new ArrayList<>();
@@ -39,6 +39,18 @@ public class Cazador {
         Fantasma fantasma = new Fantasma(contadorId++, nombre, clase, nivelPeligro, habilidad);
         fantasmas.add(fantasma);
         System.out.println("Fantasma \"" + nombre + "\" capturado exitosamente.");
+    }
+    public void listarFantasmas() {
+        if (fantasmas.isEmpty()) {
+            System.out.println("No hay fantasmas capturados.");
+            return;
+        }
+        System.out.println("ID    Nombre                           Clase           Nivel de Peligro   Fecha de Captura");
+        System.out.println("------------------------------------------------------------------------------------");
+        for (Fantasma fantasma : fantasmas) {
+            System.out.println(fantasma);
+        }
+        System.out.println("Total de fantasmas capturados: " + fantasmas.size());
     }
 
 }
