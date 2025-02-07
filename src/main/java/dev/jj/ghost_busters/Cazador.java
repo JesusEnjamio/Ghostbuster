@@ -47,7 +47,6 @@ public class Cazador {
         System.out.println("Fantasma \"" + nombre + "\" capturado exitosamente.");
     }
 
-   
     public void listarFantasmas() {
         if (fantasmas.isEmpty()) {
             System.out.println("No hay fantasmas capturados.");
@@ -59,5 +58,24 @@ public class Cazador {
             System.out.println(fantasma);
         }
         System.out.println("Total de fantasmas capturados: " + fantasmas.size());
+    }
+    public void liberarFantasma(Scanner scanner) {
+        System.out.println("Ingresa el ID del fantasma a liberar:");
+        int id = Integer.parseInt(scanner.nextLine());
+
+        Fantasma fantasmaLiberar = null;
+        for (Fantasma fantasma : fantasmas) {
+            if (fantasma.getId() == id) {
+                fantasmaLiberar = fantasma;
+                break;
+            }
+        }
+
+        if (fantasmaLiberar != null) {
+            fantasmas.remove(fantasmaLiberar);
+            System.out.println("Fantasma \"" + fantasmaLiberar.getNombre() + "\" liberado exitosamente.");
+        } else {
+            System.out.println("Error: No se encontró ningún fantasma con el ID especificado.");
+        }
     }
 }
